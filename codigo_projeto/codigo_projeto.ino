@@ -12,7 +12,7 @@ char tecla[filas][colunas] = {
   {'*','0','#'}
 };
 byte pinFilas[filas] = {7, 6, 5, 4}; 
-byte pinColunas[colunas] = {1, 2, 3}; 
+byte pinColunas[colunas] = {3, 2, 1}; 
 Keypad keypad = Keypad( makeKeymap(tecla), pinFilas, pinColunas, filas, colunas );
 const int rs = 13, en = 12, d4 = 11, d5 = 10, d6 = 9, d7 = 8;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
@@ -85,7 +85,8 @@ void loop() {
       if (ContadorSenhaErrada==3){
         lcd.clear();
         if(repete==0){
-          digitalWrite(Speaker, HIGH);
+          tone(Speaker, 440);
+          delay(200);
           digitalWrite(SinalVisualVerde, HIGH);
           digitalWrite(SinalVisualVermelho, LOW);
           lcd.print("Alarme Disparado");
@@ -108,9 +109,10 @@ void loop() {
 }
 
 void DisparaAlarme(char num){
-  if(digitalRead(Porta)==LOW&&Ligar==1&&Ativa!=1){
+  if(digitalRead(Porta)==HIGH&&Ligar==1&&Ativa!=1){
     lcd.clear();
-    digitalWrite(Speaker, HIGH);
+    tone(Speaker, 440);
+    delay(200);
     digitalWrite(SinalVisualVerde, LOW);
     digitalWrite(SinalVisualVermelho, HIGH);
     lcd.print("****INVASAO****");
@@ -244,7 +246,7 @@ void SenhaCerta(int x){
   servo1.write(map(angulo, 0, 1022, 0, 180)); 
   ContadorSenhaErrada=0;
   Ligar=0;
-  digitalWrite(Speaker, LOW);
+  noTone(Speaker);
   digitalWrite(SinalVisualVerde, HIGH);
   digitalWrite(SinalVisualVermelho, LOW);
   }
@@ -313,7 +315,7 @@ void DesligarAlarmeSistema(char num){
         ContadorSenha=0;
         SenhaStringSistema=""; 
         ContadorSenhaErrada=0;
-        digitalWrite(Speaker, LOW);
+        noTone(Speaker);
         digitalWrite(SinalVisualVerde, HIGH);
         digitalWrite(SinalVisualVermelho, LOW);
       }
