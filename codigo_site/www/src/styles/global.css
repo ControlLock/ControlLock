@@ -1,0 +1,37 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: #000;
+  background: #ebf2f5;
+}
+
+body, input, button, textarea {
+  font: 600 18px 'Space Grotesk', sans-serif;
+}
+
+button{
+  padding-left: 5px;
+  width: 80px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+    
+  border: 2px solid rgb(40, 39, 44);
+}
+
+input {
+  padding-left: 5px;
+  width: 200px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 2px solid rgb(40, 39, 44);
+}
